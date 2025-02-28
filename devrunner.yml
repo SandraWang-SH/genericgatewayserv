@@ -1,0 +1,34 @@
+apptype: raptor3
+appname: aimlgenericgatewayserv
+
+#-------------------------------------------------------------------------
+# Welcome to DevRunner
+#
+# DevRunner is a tool which can store and run actions for
+# for you by providing a layer of abstraction of the commands
+# so you do not have to remember what the setup, parameters,
+# and cmds are required to run the actions.
+#
+# More information please see: http://devrunner
+#
+# Below is an example of how you would define additional
+# parameters to be added to your mvn command to run functional
+# tests.
+#-------------------------------------------------------------------------
+
+functional-test:
+  params:
+    port:
+      # Please change this value when your application is assigned a port
+      default: 8443
+
+unit-test:
+  code_coverage:
+    modules: aimlgenericgatewayservService
+
+#  run:
+#    additional_params:
+#      - -DskipTests=false
+#      - -DstageName={stage-host}
+#      - -Dmaven.test.failure.ignore=true
+#      - --fail-never

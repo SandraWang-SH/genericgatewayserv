@@ -1,0 +1,66 @@
+{
+	"info": {
+		"_postman_id": "e48c9bef-23ca-427e-8923-b18e43bff4d0",
+		"name": "raptor-sample",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "rest-hello-world",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8443/v1/sampleresource/hello",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"v1",
+						"sampleresource",
+						"hello"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "books-sample",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "X-PAYPAL-SECURITY-CONTEXT",
+						"type": "text",
+						"value": "{\"actor\":{\"account_number\":\"2234787809757634209\",\"party_id\":\"2234787809757634209\",\"auth_claims\":[\"CLIENT_SECRET\"],\"auth_state\":\"LOGGEDIN\"},\"auth_token\":\"EOs_su6vMylSsd7fY6mW09VfRhex0sJEB6WuC_tPztA9\",\"auth_token_type\":\"ACCESS_TOKEN\",\"last_validated\":1384564119,\"scopes\":[\"openid\",\"https://api.paypal.com/v1/developer/.* <https://api.paypal.com/v1/developer/.%2a> \"],\"subjects\":[{\"subject\":{\"account_number\":\"2234787809757634209\",\"party_id\":\"2234787809757634209\",\"auth_claims\":[\"CLIENT_SECRET\"],\"auth_state\":\"LOGGEDIN\"}}]}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\":\" { books \\n {\\n name \\n author {name} \\n} \\n}\\n\",\n\t\"variables\":null\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
