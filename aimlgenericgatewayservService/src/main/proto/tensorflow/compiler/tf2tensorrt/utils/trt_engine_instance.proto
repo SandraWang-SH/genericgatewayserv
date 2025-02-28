@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package tensorflow.tensorrt;
+option java_outer_classname = "TrtEngineInstanceV2";
+
+import "tensorflow/core/framework/tensor_shape.proto";
+
+// Containing information for a serialized TensorRT engine.
+message TRTEngineInstance {
+  // The input shapes of the TRT engine.
+  repeated TensorShapeProto input_shapes = 1;
+
+  // The serialized TRT engine.
+  //
+  // TODO(laigd): consider using a more efficient in-memory representation
+  // instead of string which is the default here.
+  bytes serialized_engine = 2;
+
+  // TODO(laigd): consider adding calibration stats, precision_modes, etc.
+}

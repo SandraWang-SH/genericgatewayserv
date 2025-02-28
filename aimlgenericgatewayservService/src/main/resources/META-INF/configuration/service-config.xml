@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service-config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:noNamespaceSchemaLocation="http://telemetry.qa.paypal.com/build-service/content/assembler/MetadataRepo/raptor-2.0/production/service-config-1.0.0.xsd">
+    <target-platform name="Linux">
+        <classOfService name="Production"> <!-- name indicates the env -->
+            <wrapper>
+
+                <max-heap-size>4096</max-heap-size>
+                <min-heap-size>4096</min-heap-size>
+
+                <additional-command-line-arguments>
+                    <jvm-pass-through-argument>-Draptor.cos=Production</jvm-pass-through-argument> <!-- raptor configuration -->
+
+                    <!-- GC configuration, here we use Garbage First(G1) Collector -->
+                    <jvm-pass-through-argument>-XX:+UseG1GC</jvm-pass-through-argument>
+<!--                    <jvm-pass-through-argument>-XX:-UseConcMarkSweepGC</jvm-pass-through-argument>-->
+                    <jvm-pass-through-argument>-XX:InitialHeapSize=4096</jvm-pass-through-argument>
+                    <jvm-pass-through-argument>-XX:+DisableExplicitGC</jvm-pass-through-argument>
+                    <jvm-pass-through-argument>-XX:+ParallelRefProcEnabled</jvm-pass-through-argument>
+                    <jvm-pass-through-argument>-XX:MaxDirectMemorySize=2048m</jvm-pass-through-argument>
+
+
+<!--                    <jvm-pass-through-argument>-XX:+PrintGCDetails</jvm-pass-through-argument>-->
+<!--                    <jvm-pass-through-argument>-XX:+PrintGCDateStamps</jvm-pass-through-argument>-->
+                    <jvm-pass-through-argument>-Xlog:gc*</jvm-pass-through-argument>
+                    <jvm-pass-through-argument>-Xlog:gc+heap=trace</jvm-pass-through-argument>
+                    <jvm-pass-through-argument>-Xlog:gc+age*=trace</jvm-pass-through-argument>
+                    <jvm-pass-through-argument>-Xlog:safepoint</jvm-pass-through-argument>
+
+<!--                    <jvm-pass-through-argument>-XX:+UseGCLogFileRotation</jvm-pass-through-argument>-->
+<!--                    <jvm-pass-through-argument>-XX:NumberOfGCLogFiles=10</jvm-pass-through-argument>-->
+<!--                    <jvm-pass-through-argument>-XX:GCLogFileSize=100M</jvm-pass-through-argument>-->
+
+                    <jvm-pass-through-argument>-XX:MaxGCPauseMillis=100</jvm-pass-through-argument>
+
+
+                    <!-- Dump on OOM -->
+                    <jvm-pass-through-argument>-XX:+HeapDumpOnOutOfMemoryError</jvm-pass-through-argument>
+                    <jvm-pass-through-argument>-XX:HeapDumpPath=/x/cronusapp/`date`.hprof</jvm-pass-through-argument>
+
+
+                    <!-- Set CPU cores in order to enhance the calculation of CPU usage -->
+                    <jvm-pass-through-argument>-XX:ActiveProcessorCount=2</jvm-pass-through-argument>
+
+                    <!--Add JVM config to enable jmx remote connection-->
+                    <jvm-pass-through-argument>-Dcom.sun.management.jmxremote=true</jvm-pass-through-argument>
+                    <jvm-pass-through-argument>-Dcom.sun.management.jmxremote.port=16139</jvm-pass-through-argument>
+                    <jvm-pass-through-argument>-Dcom.sun.management.jmxremote.ssl=false</jvm-pass-through-argument>
+                    <jvm-pass-through-argument>-Dcom.sun.management.jmxremote.authenticate=false</jvm-pass-through-argument>
+
+                    <!-- Arguments for JDK17 compatibility -->
+                    <jvm-pass-through-argument>-XX:+AllowRedefinitionToAddDeleteMethods</jvm-pass-through-argument>
+                    <jvm-pass-through-argument>--add-opens=java.base/java.lang=ALL-UNNAMED</jvm-pass-through-argument>
+                </additional-command-line-arguments>
+            </wrapper>
+            <server-runtime>
+                <!-- Obsolete 'server-runtime' Section must remain for xsd compliance -->
+            </server-runtime>
+        </classOfService>
+        <classOfService name="Sandbox">
+            <wrapper>
+                <!-- Your JSW override configurations go here. -->
+            </wrapper>
+            <server-runtime>
+                <!-- Obsolete 'server-runtime' Section must remain for xsd compliance -->
+            </server-runtime>
+        </classOfService>
+        <classOfService name="QA">
+            <wrapper>
+
+                <max-heap-size>4096</max-heap-size>
+                <min-heap-size>4096</min-heap-size>
+
+                <additional-command-line-arguments>
+                    <jvm-pass-through-argument>-Draptor.cos=QA</jvm-pass-through-argument>
+
+
+                    <!-- GC configuration, here we use Garbage First(G1) Collector -->
+                    <jvm-pass-through-argument>-XX:+UseG1GC</jvm-pass-through-argument>
+<!--                    <jvm-pass-through-argument>-XX:-UseConcMarkSweepGC</jvm-pass-through-argument>-->
+                    <jvm-pass-through-argument>-XX:InitialHeapSize=4096</jvm-pass-through-argument>
+                    <jvm-pass-through-argument>-XX:+DisableExplicitGC</jvm-pass-through-argument>
+                    <jvm-pass-through-argument>-XX:+ParallelRefProcEnabled</jvm-pass-through-argument>
+                    <jvm-pass-through-argument>-XX:MaxDirectMemorySize=2048m</jvm-pass-through-argument>
+
+
+<!--                    <jvm-pass-through-argument>-XX:+PrintGCDetails</jvm-pass-through-argument>-->
+<!--                    <jvm-pass-through-argument>-XX:+PrintGCDateStamps</jvm-pass-through-argument>-->
+                    <jvm-pass-through-argument>-Xlog:gc*</jvm-pass-through-argument>
+                    <jvm-pass-through-argument>-Xlog:gc+heap=trace</jvm-pass-through-argument>
+                    <jvm-pass-through-argument>-Xlog:gc+age*=trace</jvm-pass-through-argument>
+                    <jvm-pass-through-argument>-Xlog:safepoint</jvm-pass-through-argument>
+
+<!--                    <jvm-pass-through-argument>-XX:+UseGCLogFileRotation</jvm-pass-through-argument>-->
+<!--                    <jvm-pass-through-argument>-XX:NumberOfGCLogFiles=10</jvm-pass-through-argument>-->
+<!--                    <jvm-pass-through-argument>-XX:GCLogFileSize=100M</jvm-pass-through-argument>-->
+
+                    <jvm-pass-through-argument>-XX:MaxGCPauseMillis=20</jvm-pass-through-argument>
+
+
+                    <!-- Dump on OOM -->
+                    <jvm-pass-through-argument>-XX:+HeapDumpOnOutOfMemoryError</jvm-pass-through-argument>
+                    <jvm-pass-through-argument>-XX:HeapDumpPath=/x/cronusapp/`date`.hprof</jvm-pass-through-argument>
+
+
+                    <!-- Set CPU cores in order to enhance the calculation of CPU usage -->
+                    <jvm-pass-through-argument>-XX:ActiveProcessorCount=2</jvm-pass-through-argument>
+
+                    <!--Add JVM config to enable jmx remote connection-->
+                    <jvm-pass-through-argument>-Dcom.sun.management.jmxremote=true</jvm-pass-through-argument>
+                    <jvm-pass-through-argument>-Dcom.sun.management.jmxremote.port=16139</jvm-pass-through-argument>
+                    <jvm-pass-through-argument>-Dcom.sun.management.jmxremote.ssl=false</jvm-pass-through-argument>
+                    <jvm-pass-through-argument>-Dcom.sun.management.jmxremote.authenticate=false</jvm-pass-through-argument>
+
+                    <!-- Arguments for JDK17 compatibility -->
+                    <jvm-pass-through-argument>-XX:+AllowRedefinitionToAddDeleteMethods</jvm-pass-through-argument>
+                    <jvm-pass-through-argument>--add-opens=java.base/java.lang=ALL-UNNAMED</jvm-pass-through-argument>
+                </additional-command-line-arguments>
+            </wrapper>
+            <server-runtime>
+                <!-- Obsolete 'server-runtime' Section must remain for xsd compliance -->
+            </server-runtime>
+        </classOfService>
+
+    </target-platform>
+</service-config>

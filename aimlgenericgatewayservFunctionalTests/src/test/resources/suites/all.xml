@@ -1,0 +1,21 @@
+<suite thread-count="100" verbose="1" name="All Suite" skipfailedinvocationcounts="false" junit="false"
+       parallel="false" data-provider-thread-count="50" annotations="JDK">
+
+    <!-- The RESTful service under test. Update value for your service/stage -->
+    <parameter name="mako.hostname" value="localhost" />
+    <parameter name="mako.port" value="8443"/>
+    <parameter name="mako.protocol" value="https"/>
+    <parameter name="mako.path" value="/v1/aimlgenericgatewayserv" />
+
+    <!-- Restjaws service endpoint -->
+    <parameter name="mako.restjaws.hostname" value="jaws.qa.paypal.com"/>
+    <parameter name="mako.restjaws.port" value="80"/>
+    <parameter name="mako.restjaws.protocol" value="http"/>
+    <parameter name="mako.restjaws.path" value="/v1/QIJawsServices" />
+
+    <test verbose="2" name="All tests" annotations="JDK">
+        <packages>
+            <package name="com.paypal.raptor.aiml.tests" />
+        </packages>
+    </test>
+</suite>
